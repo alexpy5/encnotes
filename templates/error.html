@@ -1,0 +1,20 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Disnotes{% endblock %}
+
+{% block head %}
+{{super()}}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{% endblock %}
+
+{% block content %}
+
+<h2>Encnotes - зашифрованные записки</h2>
+<hr>
+<b>Неправильная ссылка</b>
+<br><br>
+<a href="{{ url_for('index') }}">
+  <input class="btn btn-default" type="submit" value="Создать новое сообщение">
+</a>
+
+{% endblock %}

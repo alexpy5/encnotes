@@ -1,0 +1,17 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Encnotes{% endblock %}
+
+{% block head %}
+{{super()}}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{% endblock %}
+
+{% block content %}
+
+<h2>Encnotes - зашифрованные записки</h2>
+<hr>
+{{ wtf.quick_form(form) }}
+
+{% endblock %}
