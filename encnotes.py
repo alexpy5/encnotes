@@ -93,9 +93,10 @@ def index():
         rnumber = random.randint(1000000, 9999999)
         while True:
             n = Note.query.filter_by(number=rnumber).first()
-            if not n:
-                break
-            rnumber = random.randint(1000000, 9999999)
+            if n:
+                rnumber = random.randint(1000000, 9999999)
+                continue
+            break            
         cipher_note = Note(number=rnumber, ciptext=str_cipher_text)
         link = f'{app.config["SITE_URL"]}/{rnumber}/{str_key}'
         db.session.add(cipher_note)
