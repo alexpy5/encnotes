@@ -4,3 +4,6 @@ Flask-Migrate
 Flask-SQLAlchemy
 Flask-WTF
 Flask-Bootstrap
+gunicorn
+psycopg2
+
