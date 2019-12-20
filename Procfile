@@ -1,1 +1,1 @@
-web: gunicorn encnote:app
+web: gunicorn encnotes:app
