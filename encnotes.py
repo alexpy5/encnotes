@@ -17,13 +17,10 @@ from wtforms import TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Length
 
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-
-
 class Config():
     """Класс конфигурации для Flask
 
-    Все настройки указывают в этом классе.
+    Настройки задаются в переменных среды системы.
 
     SECRET_KEY - ключ для генерации подписей или токенов
     SQLALCHEMY_TRACK_MODIFICATIONS - отключение уведомлений о каждом изменении
@@ -31,11 +28,9 @@ class Config():
     SQLALCHEMY_DATABASE_URI - местоположение базы данных
     SITE_URL - полный адрес вашего сайта
     """
-    SECRET_KEY = os.environ.get('SECRET_KEY') or '1FSHFI89FSDHKFH'
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = (
-        os.environ.get('DATABASE_URL') or
-        'sqlite:///' + os.path.join(basedir, 'app.db'))
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SITE_URL = 'http://localhost:5000'
 
 
@@ -86,6 +81,7 @@ def index():
     Получает сообщение от пользователя, шифрует его модулем cryptography
     и дает пользователю ссылку с ключом.
     """
+    print(app.config['SQLALCHEMY_DATABASE_URI'])
     form = TextForm()
     if form.validate_on_submit():
         key = Fernet.generate_key()
