@@ -31,7 +31,7 @@ class Config():
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
-    SITE_URL = 'http://encnote.herokuapp.com'
+    SITE_URL = 'https://encnote.herokuapp.com'
 
 
 # Создание объекта приложения как экземпляр класса Flask
@@ -49,7 +49,7 @@ class Note(db.Model):
     number - случайная цифра, по которой мы будем находить нашу записку
     ciptext - зашифрованная записка
     """
-    __tablename__ = 'notess'
+    __tablename__ = 'notes'
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.Integer, unique=True, nullable=False)
     ciptext = db.Column(db.Text, nullable=False)
