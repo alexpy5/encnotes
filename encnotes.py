@@ -49,10 +49,10 @@ class Note(db.Model):
     number - случайная цифра, по которой мы будем находить нашу записку
     ciptext - зашифрованная записка
     """
-    __tablename__ = 'notes'
+    __tablename__ = 'notess'
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.Integer, unique=True, nullable=False)
-    ciptext = db.Column(db.Text)
+    ciptext = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
         return f'<Note number: {self.number}'
