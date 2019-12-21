@@ -81,13 +81,12 @@ def index():
     Получает сообщение от пользователя, шифрует его модулем cryptography
     и дает пользователю ссылку с ключом.
     """
-    print(app.config['SQLALCHEMY_DATABASE_URI'])
     form = TextForm()
     if form.validate_on_submit():
         key = Fernet.generate_key()
         str_key = key.decode('ascii')
         f = Fernet(key)
-        bin_string = form.text.data.encode('utf-8')
+        bin_string = form.text.data.encode('utf8')
         cipher_text = f.encrypt(bin_string)
         str_cipher_text = cipher_text.decode('ascii')
         rnumber = random.randint(1000000, 9999999)
@@ -120,7 +119,7 @@ def decrypt(rnumber, str_key):
         text = f.decrypt(cipher_text)
     except ValueError:
         return render_template('error.html')
-    text = text.decode('utf-8')
+    text = text.decode('utf8')
     db.session.delete(cipher_note)
     db.session.commit()
     return render_template('decrypt.html', text=text)
