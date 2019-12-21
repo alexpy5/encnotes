@@ -2,5 +2,4 @@ env.txt
 venv
 __pycache__
 app.db
-migrations
 Links.txt
