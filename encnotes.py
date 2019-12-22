@@ -90,7 +90,7 @@ def index():
         key = Fernet.generate_key()
         str_key = key.decode('ascii')
         f = Fernet(key)
-        bin_string = form.text.data.encode('utf8')
+        bin_string = form.text.data.encode('utf-8')
         cipher_text = f.encrypt(bin_string)
         str_cipher_text = cipher_text.decode('ascii')
         rnumber = random.randint(1000000, 9999999)
@@ -108,7 +108,13 @@ def index():
     return render_template('index.html', form=form)
 
 
-@app.route('/<int:rnumber>/<str_key>')
+@app.route('/<rnumber>/<str_key>')
+def question(rnumber, str_key):
+    link = f'{app.config["SITE_URL"]}/decrypt/{rnumber}/{str_key}'
+    return render_template('question.html', link=link)
+
+
+@app.route('/decrypt/<int:rnumber>/<str_key>')
 def decrypt(rnumber, str_key):
     """Фукнция просмотра для расшифровки сообщения
 
@@ -123,7 +129,7 @@ def decrypt(rnumber, str_key):
         text = f.decrypt(cipher_text)
     except ValueError:
         return render_template('error.html')
-    text = text.decode('utf8')
+    text = text.decode('utf-8')
     db.session.delete(cipher_note)
     db.session.commit()
     return render_template('decrypt.html', text=text)

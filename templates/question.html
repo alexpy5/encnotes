@@ -1,0 +1,22 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Encnotes{% endblock %}
+
+{% block head %}
+{{super()}}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{% endblock %}
+
+{% block content %}
+
+<h2>Encnotes - зашифрованные записки</h2>
+<hr>
+<b>Нажмите на кнопку расшифровать, чтобы увидеть сообщение.<br>
+После расшифровки сообщение будет удалено с сайта.</b>
+<br>
+<br>
+<a href="{{ link }}">
+  <input class="btn btn-default" type="submit" value="Расшифровать">
+</a>
+
+{% endblock %}
