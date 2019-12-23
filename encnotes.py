@@ -99,7 +99,7 @@ def index():
             if n:
                 rnumber = random.randint(1000000, 9999999)
                 continue
-            break            
+            break
         cipher_note = Note(number=rnumber, ciptext=str_cipher_text)
         link = f'{app.config["SITE_URL"]}/{rnumber}/{str_key}'
         db.session.add(cipher_note)
