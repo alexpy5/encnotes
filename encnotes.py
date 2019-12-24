@@ -71,7 +71,7 @@ class TextForm(FlaskForm):
                          validators=[DataRequired(), Length(1, 1000)])
     submit = SubmitField('Создать')
 
-# Регистрация функции фукции как функцию контекста оболочки,
+# Регистрация функции как функцию контекста оболочки,
 # что дает возможность работать с объектами базы данных не импортирую их
 @app.shell_context_processor
 def make_shell_context():
