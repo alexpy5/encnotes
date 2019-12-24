@@ -131,7 +131,7 @@ def decrypt(rnumber, str_key):
     try:
         f = Fernet(key)
         text = f.decrypt(cipher_text)
-    except ValueError:
+    except (ValueError, InvalidToken) as error:
         return render_template('error.html')
     text = text.decode('utf-8')
     db.session.delete(cipher_note)
