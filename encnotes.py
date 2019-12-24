@@ -7,7 +7,7 @@
 import os
 import random
 
-from cryptography.fernet import Fernet
+from cryptography.fernet import Fernet, InvalidToken
 from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -131,11 +131,7 @@ def decrypt(rnumber, str_key):
     try:
         f = Fernet(key)
         text = f.decrypt(cipher_text)
-    except ValueError as e:
-        print('Error: ', e)
-        return render_template('error.html')
-    except InvalidToken as e:
-        print('Error: ', e)
+    except (ValueError, InvalidToken):
         return render_template('error.html')
     text = text.decode('utf-8')
     db.session.delete(cipher_note)
