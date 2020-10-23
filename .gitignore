@@ -1,5 +1,6 @@
 env.txt
 venv
+habr_py_articles
 __pycache__
 app.db
 Links.txt
